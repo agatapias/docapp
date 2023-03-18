@@ -3,13 +3,13 @@ import lombok.Data;
 
 @Entity
 @Data
-public class User {
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String username;
-    private String password;
-    private String role;
+    private String date;
+    private Long hour;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id")
     private Patient patient;
@@ -18,8 +18,8 @@ public class User {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "visit_type_id")
+    private Visit_type visit_type;
 
 }
